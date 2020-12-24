@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Olá mundo!!'),
     );
   }
 }
@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'APERTA ESSA BAGAÇASAIHSAHDASDJBDSBABDABDSABASDBSDAHBJSDASADBSDASADJBSDABJSDABJSDABHJASDHBABSDJHBSHADJBHDSASJDBSABDJHABSHJDKABsdhjajskdbshdbjsakbdhsjadakdbjhdbashkdbhjsdkbdjhksadbhjdkbsadhjadsbhjds:',
+              'APERTA ESSA BAGAÇA:',
             ),
             Text(
               '$_counter',
