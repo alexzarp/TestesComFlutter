@@ -1,66 +1,60 @@
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(MyApp());
+import './questao.dart';
+import './resposta.dart';
+main() {
+	runApp(new PerguntaApp());
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Olá mundo!!'),
-    );
-  }
+class _PerguntaAppState extends State<PerguntaApp> {
+	var _perguntaSelecionada = 0;
+
+	void _responder() {
+		setState(() {
+			_perguntaSelecionada++;
+		});
+		//print('Pergunta respondida');
+	}
+
+	@override
+	Widget build(BuildContext context) {
+
+		final List<Map<String, Object>> perguntas = [
+
+			{ 'texto': 'Qual é a sua cor favorita?',
+        'respostas': ['Preto','Vermelho','Verde','Branco'] },
+
+      { 'texto': 'Qual é o seu animal preferido?',
+        'respostas': ['Coelho','Cobra','Elefante','Leão'] },
+
+      { 'texto': 'Qual é o seu time?',
+        'respostas': ['TeamOferflow','TimeB','TeamStupid','EquipeGuarda'] },
+		];
+
+    List<Widget> respostas = [];
+
+    for (String textoResp in perguntas[_perguntaSelecionada] ['repostas']) {
+      respostas.add(Resposta(textoResp, _responder));
+    }
+
+		return MaterialApp(
+			home: Scaffold(
+				appBar: AppBar(
+					title: Text("Perguntas"),
+				),
+				body: Column(
+					children: <Widget>[
+						Questao(perguntas[_perguntaSelecionada] ['texto']),
+            ...respostas,
+					],
+				),
+			),
+		);
+	}
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
+class PerguntaApp extends StatefulWidget {
 
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'APERTA ESSA BAGAÇA:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
+	_PerguntaAppState createState() {
+		return _PerguntaAppState();
+	}
 }
