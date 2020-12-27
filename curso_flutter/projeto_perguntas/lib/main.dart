@@ -34,6 +34,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
       },
     ];
 
+    // ! Problema estava aqui, o retorno da iteração, passava "reposta" ao inves de resposta.
     List<String> respostas = perguntas[_perguntaSelecionada]['respostas'];
 
     return MaterialApp(
