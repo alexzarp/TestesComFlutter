@@ -1,4 +1,4 @@
-#Sun Dec 27 17:51:44 GFT 2020
+#Sun Dec 27 18:32:53 GFT 2020
 base.0=C\:\\Codes\\TestesComFlutter\\curso_flutter\\expenses\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
