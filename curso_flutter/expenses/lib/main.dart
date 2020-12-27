@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:expenses/components/transaction_list.dart';
+import 'components/transaction_user.dart';
 
 main() => runApp(ExpensesApp());
 
 class ExpensesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: MyHomePage());
+    return MaterialApp(
+      home: MyHomePage(),
+    );
   }
 }
 
