@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import './questao.dart';
 import './resposta.dart';
 
@@ -32,7 +34,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
       },
     ];
 
-    List<String> respostas = perguntas[_perguntaSelecionada]['repostas'];
+    List<String> respostas = perguntas[_perguntaSelecionada]['respostas'];
 
     return MaterialApp(
       home: Scaffold(
