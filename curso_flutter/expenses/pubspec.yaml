@@ -60,13 +60,13 @@ flutter:
       fonts:
         - asset: assets/fonts/OpenSans-Regular.ttf
         - asset: assets/fonts/OpenSans-Bold.ttf
-        - asset: fonts/Schyler-Italic.ttf
+        #- asset: fonts/Schyler-Italic.ttf
           weight: 700
     - family: Quicksand
       fonts:
         - asset: assets/fonts/Quicksand-Regular.ttf
         - asset: assets/fonts/Quicksand-Bold.ttf
-        - asset: fonts/Schyler-Italic.ttf
+        #- asset: fonts/Schyler-Italic.ttf
           weight: 700
   #   - family: Trajan Pro
   #     fonts:
