@@ -15,13 +15,10 @@ class TransactionList extends StatelessWidget {
             builder: (ctx, constraints) {
               return Column(
                 children: <Widget>[
-                  SizedBox(height: constraints.maxWidth * 0.05),
-                  Container(
-                    height: constraints.maxHeight * 0.3,
-                    child: Text(
-                      'Nenhuma transação cadastrada!',
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
+                  SizedBox(height: 20),
+                  Text(
+                    'Nenhuma transação cadastrada!',
+                    style: Theme.of(context).textTheme.headline6,
                   ),
                   SizedBox(height: constraints.maxWidth * 0.05),
                   Container(
