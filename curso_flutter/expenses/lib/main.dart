@@ -94,75 +94,79 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _getIconButton(IconData icon, Function fn) {
-    return Platform.isIOS ?
-    GestureDetector(onTap: fn, child: Icon(icon)) :
-    IconButton(
-      icon: Icon(icon),
-      onPressed: fn,
-    );
+    return Platform.isIOS
+        ? GestureDetector(onTap: fn, child: Icon(icon))
+        : IconButton(
+            icon: Icon(icon),
+            onPressed: fn,
+          );
   }
 
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     bool isLandscape = mediaQuery.orientation == Orientation.landscape;
-    
+
+    final iconList = Platform.isIOS ? CupertinoIcons.refresh : Icons.list;
+    final chartList =
+        Platform.isIOS ? CupertinoIcons.refresh : Icons.show_chart;
+
     final actions = <Widget>[
-        if (isLandscape)
-          _getIconButton(
-            _showChart ? Icons.list : Icons.show_chart,
-            () {
-              setState(() {
-                _showChart = !_showChart;
-              });
-            },
-          ),
+      if (isLandscape)
         _getIconButton(
-          Platform.isIOS ? CupertinoIcons.add : Icons.add,
-          () => _openTransactionFormModal(context),
+          _showChart ? iconList : chartList,
+          () {
+            setState(() {
+              _showChart = !_showChart;
+            });
+          },
         ),
-      ]
-
-
-    final PreferredSizeWidget appBar = Platform.isIOS ?
-    CupertinoNavigationBar(
-      middle: Text('Despesas pessoais'),
-      trailing: Row (
-        mainAxisSize: MainAxisSize.min,
-        children: actions,
+      _getIconButton(
+        Platform.isIOS ? CupertinoIcons.add : Icons.add,
+        () => _openTransactionFormModal(context),
       ),
-    )
+    ];
 
-     : AppBar(
-      title: Text('Despesas Pessoais'),
-      actions: actions,
-    );
+    final PreferredSizeWidget appBar = Platform.isIOS
+        ? CupertinoNavigationBar(
+            middle: Text('Despesas pessoais'),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: actions,
+            ),
+          )
+        : AppBar(
+            title: Text('Despesas Pessoais'),
+            actions: actions,
+          );
 
     final availabelHeight = MediaQuery.of(context).size.height -
         appBar.preferredSize.height -
         mediaQuery.padding.top;
 
-    final bodyPage = SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          if (_showChart || !isLandscape)
-            Container(
-              height: availabelHeight * (isLandscape ? 0.9 : 0.3),
-              child: Chart(_recentTransactions),
-            ),
-          if (!_showChart || !isLandscape)
-            Container(
-              height: availabelHeight * (isLandscape ? 1 : 0.3),
-              child: TransactionList(_transactions, _removeTransaction),
-            ),
-        ],
+    final bodyPage = SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            if (_showChart || !isLandscape)
+              Container(
+                height: availabelHeight * (isLandscape ? 0.9 : 0.3),
+                child: Chart(_recentTransactions),
+              ),
+            if (!_showChart || !isLandscape)
+              Container(
+                height: availabelHeight * (isLandscape ? 1 : 0.3),
+                child: TransactionList(_transactions, _removeTransaction),
+              ),
+          ],
+        ),
       ),
     );
 
     return Platform.isIOS
         ? CupertinoPageScaffold(
-          navigationBar: appBar,
+            navigationBar: appBar,
             child: bodyPage,
           )
         : Scaffold(
